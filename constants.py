@@ -207,6 +207,20 @@ PEAKDAYS = [
     "May 13, 2025"
 ]
 
+TOPPINGPRICES = {
+    "Pearl": 0.50,
+    "Crystal boba": 0.60,
+    "Mini pearl": 0.50,
+    "Lychee jelly": 0.75,
+    "Pudding": 0.70,
+    "Aloe vera": 0.65,
+    "Herb jelly": 0.55,
+    "Crema": 0.80,
+    "Aiyu jelly": 0.70,
+    "Ice cream": 1.50,
+    "Honey pack": 0.40,
+    "Edible green": 0.60
+}
 
 f = open("names.csv")
 
