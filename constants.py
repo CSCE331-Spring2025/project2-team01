@@ -207,7 +207,7 @@ PEAKDAYS = [
     "May 13, 2025"
 ]
 
-topping_prices = {
+TOPPINGPRICES = {
     "Pearl": 0.50,
     "Crystal boba": 0.60,
     "Mini pearl": 0.50,
