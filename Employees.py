@@ -1,3 +1,4 @@
+import uuid, 
 class Employees:
     def __init__(Uuid, isManager, Name, PayGrade, Hours):
         self.Uuid = Uuid

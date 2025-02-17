@@ -2,7 +2,7 @@ import csv
 import constants
 import random
 import Topping
-import populateInventory
+import Inventory
 import sys
 
 
