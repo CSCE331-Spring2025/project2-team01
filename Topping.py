@@ -14,3 +14,13 @@ class Topping:
         return self.basePrice
     
     
+    def to_dict(self):
+        """Convert the Topping object to a dictionary for CSV writing."""
+        return {
+            "Topping UUID": self.uuid,
+            "Topping Type": self.type,
+            "Topping Price": self.basePrice
+        }
+
+    def __repr__(self):
+        return f"Topping(uuid={self.uuid}, type={self.type}, basePrice={self.basePrice})"
