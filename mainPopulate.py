@@ -41,13 +41,12 @@ print('Item data file created successfully. ' )
 
 
 
-#TODO: CHANGE HOURS FIELD
 #Create Employee CSV
 employeeData = [['ID', 'isManager', 'name', 'payGrade' ,'hours']]
 #input iteam data from constants
-employeeData.append([1, True, constants.MANAGER, round(constants.random.uniform(22.00, 28.00),2), 0])
+employeeData.append([1, True, constants.MANAGER, round(constants.random.uniform(22.00, 28.00),2), 8])
 for i in range(len(constants.EMPLOYEES)):
-    employeeData.append([i+2, False, constants.EMPLOYEES[i], round(constants.random.uniform(13.00, 21.00), 2), 0])
+    employeeData.append([i+2, False, constants.EMPLOYEES[i], round(constants.random.uniform(13.00, 21.00), 2), constants.random.randint(3, 8)])
 #configure csv and input data
 employeeCSVFilePath = 'employees.csv'
 with open(employeeCSVFilePath, mode = 'w', newline = '') as file:
@@ -57,7 +56,6 @@ print('Employee data file created successfully')
  
     
  
-#TODO: NEED TO FINISH COST 
 #Create Inventory CSV
 inventoryData = [['ID', 'name', 'isAllergen', 'stockQuantity', 'unitPrice', 'cost']]
 #first compile a list of all the ingredients from recipes
@@ -69,7 +67,7 @@ for i in range(len(constants.FLAVORS)):
 ingredientsList = list(set(ingredientsList))
 #input inventory data from constants 
 for i in range(len(ingredientsList)):
-    inventoryData.append([i+1, ingredientsList[i], constants.ALLERGENS[ingredientsList[i]], sys.maxsize, constants.MATERIALUNITPRICE[ingredientsList[i]], 0])
+    inventoryData.append([i+1, ingredientsList[i], constants.ALLERGENS[ingredientsList[i]], sys.maxsize, constants.MATERIALUNITPRICE[ingredientsList[i]],   round((sys.maxsize/1000)*constants.MATERIALUNITPRICE[ingredientsList[i]],2)])
 #configure csv and input data
 inventoryCSVFilePath = 'inventory.csv'
 with open(inventoryCSVFilePath, mode='w', newline='') as file:

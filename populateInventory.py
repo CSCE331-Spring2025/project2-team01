@@ -20,6 +20,8 @@ class Inventory:
         return self.UnitPrice
     def getCost(self):
         return self.Cost
+    def setCost(self, newCost):
+        self.Cost = newCost
     
     
     
