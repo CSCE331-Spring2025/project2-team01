@@ -78,10 +78,6 @@ with open(inventoryCSVFilePath, mode='w', newline='') as file:
 print('Inventory data file created successfully')
             
 
-
-
-
-
-
 #Create Orders CSV
 #For randomness: random employee, random item, random number of items, random toppings, random number of toppings
+#keep track of the sum, making sure total sales exceeds beta million 
