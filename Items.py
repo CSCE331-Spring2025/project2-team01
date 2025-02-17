@@ -32,7 +32,7 @@ class Items:
         # picks numToppings toppings from TOPPINGS randomly
         selectedToppings = random.sample(constants.TOPPINGS, numToppings)
                 
-        # Create Topping objects for each selected topping
+        # create Topping objects for each selected topping
         self.toppings = [
             Topping(str(uuid.uuid4()), topping, constants.TOPPINGPRICES.get(topping, 0.50)) 
             for topping in selectedToppings
@@ -45,7 +45,7 @@ class Items:
             "Flavor": self.flavor,
             "Base Price": self.basePrice,
             "Sub Flavor": self.subFlavor,
-            "Toppings": ", ".join([t.type for t in self.toppings]),  # Convert toppings to a comma-separated string
+            "Toppings": ", ".join([t.type for t in self.toppings]), 
             "Total Price": self.getTotalPrice()
         }    
 
