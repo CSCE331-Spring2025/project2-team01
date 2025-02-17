@@ -1,4 +1,6 @@
-import constants, random,uuid, math, Topping
+import constants, random,uuid, math
+
+from Topping import Topping
 
 class Items:
     def __init__(self, Uuid, Flavor, BasePrice, SubFlavor):
@@ -23,6 +25,11 @@ class Items:
     def getToppings(self):
         return self.toppings
     
+    def getTotalPrice(self):
+        sum = self.basePrice
+        for t in self.toppings:
+            sum += t.getBasePrice()
+    
     def generateToppings(self):
         # write a program that picks random toppings from constants
         # pick two random numbers, first is the number of toppings, second is the actual toppings
@@ -38,6 +45,7 @@ class Items:
             for topping in selectedToppings
         ]
 
+    
     def to_dict(self):
         """Convert the Item object to a dictionary for CSV writing."""
         return {
@@ -51,3 +59,4 @@ class Items:
 
     def __repr__(self):
         return f"Items(uuid={self.uuid}, flavor={self.flavor}, basePrice={self.basePrice}, subFlavor={self.subFlavor}, toppings={[t.type for t in self.toppings]})"
+
