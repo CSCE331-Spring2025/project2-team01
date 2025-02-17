@@ -1,0 +1,55 @@
+ID,name,basePrice,subFlavor
+1,Brewed tea,4.25,Classic black
+2,Brewed tea,4.25,Classic green
+3,Brewed tea,4.25,Classic oolong
+4,Brewed tea,4.25,Honey black
+5,Brewed tea,4.25,Honey green
+6,Brewed tea,4.25,Honey oolong
+7,Brewed tea,4.25,Ginger
+8,Brewed tea,4.25,Wintermelon
+9,Milk tea,4.75,Honey milk black
+10,Milk tea,4.75,Honey milk green
+11,Milk tea,4.75,Honey oolong
+12,Milk tea,4.75,Mango ginger milk
+13,Milk tea,4.75,Coffee milk
+14,Milk tea,4.75,Thai milk
+15,Milk tea,4.75,Classic
+16,Milk tea,4.75,Taro
+17,Milk tea,4.75,Okinawa milk
+18,Milk tea,4.75,Matcha milk
+19,Milk tea,4.75,Hokkaido
+20,Milk tea,4.75,Ginger milk
+21,Milk tea,4.75,QQ happy family
+22,Milk tea,4.75,Classic coffee
+23,Fruit tea,5.75,Hawaii fruit tea
+24,Fruit tea,5.75,Honey lemonade
+25,Fruit tea,5.75,Kiwi fruit tea
+26,Fruit tea,5.75,Passion fruit orange and grapefruit
+27,Fruit tea,5.75,Strawberry
+28,Fruit tea,5.75,Tropical fruit
+29,Fruit tea,5.75,Mango and passion fruit
+30,Fruit tea,5.75,Peach kiwi
+31,Fruit tea,5.75,Peach
+32,Fruit tea,5.75,Wintermelon lemonade
+33,Fruit tea,5.75,Mango green
+34,Fresh milk,4.75,Fresh milk black tea
+35,Fresh milk,4.75,Fresh milk green tea
+36,Fresh milk,4.75,Fresh milk oolong tea
+37,Fresh milk,4.75,Wintermelon with fresh milk
+38,Fresh milk,4.75,Cocoa lover with fresh milk
+39,Fresh milk,4.75,Matcha with fresh milk
+40,Fresh milk,4.75,Fresh milk family
+41,Fresh milk,4.75,Handmade taro with fresh milk
+42,Ice blended,6.0,Milk tea ice blended
+43,Ice blended,6.0,Peach tea ice blended
+44,Ice blended,6.0,Thai tea ice blended
+45,Ice blended,6.0,Taro ice blended
+46,Ice blended,6.0,Strawberry ice blended
+47,Ice blended,6.0,Oreo ice blended
+48,Ice blended,6.0,Coffee ice blended
+49,Ice blended,6.0,Mango ice blended
+50,Ice blended,6.0,Matcha ice blended
+51,Tea mojito,6.0,Lime mojito
+52,Tea mojito,6.0,Strawberry mojito
+53,Tea mojito,6.0,Mango mojito
+54,Tea mojito,6.0,Peach mojito

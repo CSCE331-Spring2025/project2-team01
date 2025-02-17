@@ -222,6 +222,28 @@ TOPPINGPRICES = {
     "Edible green": 0.60
 }
 
+FLAVORS = [
+    "Brewed tea",
+    "Milk tea",
+    "Fruit tea",
+    "Fresh milk",
+    "Ice blended",
+    "Tea mojito"
+]
+
+MANAGER = 'Queen Rev'
+
+EMPLOYEES = ['Paul Taele', 
+             'Philip Ritchey', 
+             'Aakash Tyagi', 
+             'Teresa Leyk', 
+             'Sandeep Kumar', 
+             'David Kebo', 
+             'Tim Davis',
+             'Riccardo Bettati',
+             'Hyunyoung Lee', 
+             'Michael Moore']
+
 f = open("names.csv")
 
 NAMES = {}
