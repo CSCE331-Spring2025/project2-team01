@@ -1,0 +1,5 @@
+#ignore all csv files except for names
+employees.csv
+inventory.csv
+item.csv
+toppings.csv
