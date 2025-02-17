@@ -10,6 +10,7 @@ class Items:
         self.subFlavor = SubFlavor
         self.toppings = []
 
+
     def getUuid(self):
         return self.uuid
     
@@ -29,6 +30,7 @@ class Items:
         sum = self.basePrice
         for t in self.toppings:
             sum += t.getBasePrice()
+        return sum
     
     def generateToppings(self):
         # write a program that picks random toppings from constants
