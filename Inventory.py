@@ -14,10 +14,14 @@ class Inventory:
         return self.isAllergen
     def getStockQuantity(self):
         return self.StockQuantity
+    def setStockQuantity(self, newQuantity):
+        self.StockQuantity = newQuantity
     def getUnitPrice(self):
         return self.UnitPrice
     def getCost(self):
         return self.Cost
+    def setCost(self, newCost):
+        self.Cost = newCost
     
     
     

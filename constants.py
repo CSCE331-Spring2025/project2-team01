@@ -106,7 +106,7 @@ ITEMSINGREDIENTS = {
     "Classic green": ["Green tea", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
     "Classic oolong": ["Oolong tea", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
     "Honey black": ["Black tea", "Honey", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
-    "Honey Green": ["Green tea", "Honey", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
+    "Honey green": ["Green tea", "Honey", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
     "Honey oolong": ["Oolong tea", "Honey", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
     "Ginger": ["Ginger", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
     "Wintermelon": ["Wintermelon", "Sugar", "Water", "Ice", "Cup", "Straw", "Lid", "Napkin", "Drink sleeve"],
@@ -221,6 +221,119 @@ TOPPINGPRICES = {
     "Honey pack": 0.40,
     "Edible green": 0.60
 }
+
+FLAVORS = [
+    "Brewed tea",
+    "Milk tea",
+    "Fruit tea",
+    "Fresh milk",
+    "Ice blended",
+    "Tea mojito"
+]
+
+MANAGER = 'Queen Rev'
+
+EMPLOYEES = ['Paul Taele', 
+             'Philip Ritchey', 
+             'Aakash Tyagi', 
+             'Teresa Leyk', 
+             'Sandeep Kumar', 
+             'David Kebo', 
+             'Tim Davis',
+             'Riccardo Bettati',
+             'Hyunyoung Lee', 
+             'Michael Moore'
+             ]
+
+ALLERGENS = {
+    'Hokkaido milk': True,
+    'Lime': False,
+    'Lemon': False,
+    'Sugar': False,
+    'Drink sleeve': False,
+    'Oolong tea': False,
+    'Taro': False,
+    'Tea': False,
+    'Lid': False,
+    'Tapioca pearls': False,
+    'Strawberry': False,
+    'Milk tea': True,
+    'Matcha': False,
+    'Honey': False,
+    'Lychee jelly': False,
+    'Wintermelon': False,
+    'Peach tea': False,
+    'Peach': False,
+    'Ice': False,
+    'Napkin': False,
+    'Grapefruit': False,
+    'Passion fruit': False,
+    'Ginger': False,
+    'Orange': False,
+    'Straw': False,
+    'Black tea': False,
+    'Cup': False,
+    'Cocoa': True,
+    'Kiwi': True,
+    'Water': False,
+    'Coffee': False,
+    'Oreo': True,
+    'Okinawa brown sugar': False,
+    'Milk': True,
+    'Thai tea': True,
+    'Papaya': False,
+    'Green tea': False,
+    'Mango': False,
+    'Herb jelly': False,
+    'Pineapple': False,
+    'Mint': False
+}
+
+MATERIALUNITPRICE = {
+    'Hokkaido milk': 3.50,
+    'Lime': 0.75,
+    'Lemon': 0.80,
+    'Sugar': 1.50,
+    'Drink sleeve': 0.10,
+    'Oolong tea': 2.00,
+    'Taro': 1.80,
+    'Tea': 1.50,
+    'Lid': 0.05,
+    'Tapioca pearls': 2.50,
+    'Strawberry': 2.00,
+    'Milk tea': 3.00,
+    'Matcha': 4.00,
+    'Honey': 3.20,
+    'Lychee jelly': 2.50,
+    'Wintermelon': 1.90,
+    'Peach tea': 2.75,
+    'Peach': 1.50,
+    'Ice': 0.20,
+    'Napkin': 0.05,
+    'Grapefruit': 1.75,
+    'Passion fruit': 2.25,
+    'Ginger': 1.00,
+    'Orange': 1.25,
+    'Straw': 0.05,
+    'Black tea': 1.80,
+    'Cup': 0.25,
+    'Cocoa': 2.75,
+    'Kiwi': 1.60,
+    'Water': 0.50,
+    'Coffee': 2.50,
+    'Oreo': 1.20,
+    'Okinawa brown sugar': 3.75,
+    'Milk': 2.00,
+    'Thai tea': 2.50,
+    'Papaya': 1.80,
+    'Green tea': 2.00,
+    'Mango': 2.25,
+    'Herb jelly': 2.00,
+    'Pineapple': 1.75,
+    'Mint': 1.50
+}
+
+
 
 f = open("names.csv")
 
