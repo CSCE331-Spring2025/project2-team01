@@ -1,4 +1,4 @@
-import constants, random,uuid, math,Topping
+import constants, random,uuid, math, Topping
 
 class Items:
     def __init__(self, Uuid, Flavor, BasePrice, SubFlavor):
@@ -30,12 +30,12 @@ class Items:
         # picks a number [1,12] with a median of 3
         numToppings = math.ceil(random.triangular(1, 12, 3))
         # picks numToppings toppings from TOPPINGS randomly
-        selected_toppings = random.sample(constants.TOPPINGS, numToppings)
+        selectedToppings = random.sample(constants.TOPPINGS, numToppings)
                 
         # Create Topping objects for each selected topping
         self.toppings = [
             Topping(str(uuid.uuid4()), topping, constants.TOPPINGPRICES.get(topping, 0.50)) 
-            for topping in selected_toppings
+            for topping in selectedToppings
         ]
 
     def to_dict(self):
