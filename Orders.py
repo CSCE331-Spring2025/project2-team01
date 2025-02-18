@@ -7,7 +7,7 @@ import uuid
 class Orders:
     def __init__(self, Uuid, isFulfilled, dateTime, totalPrice, customerName, employeeId):
         self.Uuid = Uuid
-        self.isFulfilled = isFulfilled
+        self.isFulfilled = True
         self.dateTime = dateTime
         self.totalPrice = totalPrice
         self.customerName = customerName
@@ -27,15 +27,14 @@ class Orders:
     
     def generateItems(self):
         items = []
-        for i in range(math.floor(random.random()*10)):
-            randomFlavor = math.floor(random.random()*6)
+        for i in range(random.randint(1,10)):
+            randomFlavor = random.randint(0,5)
             seedState = random.getstate()
-            randomSubflavor = math.floor(random.random()*len(constants.MENU[constants.FLAVORS[randomFlavor]]))
+            randomSubflavor = random.randint(0,len(constants.MENU[constants.FLAVORS[randomFlavor]])-1)
             random.setstate(seedState)
             randomItem = Items.Items(str(uuid.uuid4), constants.FLAVORS[randomFlavor], constants.FLAVORPRICES[constants.FLAVORS[randomFlavor]], constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor])
-            randomItem.generateToppings
+            randomItem.generateToppings()
             items.append(randomItem)
-            print(randomItem.getTotalPrice())
             self.totalPrice += randomItem.getTotalPrice()
         
     def to_dict(self):
