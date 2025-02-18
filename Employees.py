@@ -68,7 +68,7 @@ class Employees:
 
     def write_employees_to_csv(filename="employees.csv"):
         """Writes generated employees to a CSV file."""
-        employees = generate_employee_list()
+        employees = Employees.generate_employee_list()
         
         with open(filename, mode="w", newline="") as file:
             fieldnames = ["Employee UUID", "Is Manager", "Name", "Pay Grade", "Hours"]
