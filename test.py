@@ -3,23 +3,23 @@ import random
 import datetime
 import csv
 import constants  # Ensure constants.py is correctly imported
-from Orders import Orders  # Import Orders class
+import Orders  # Import Orders class
 
 def generate_random_orders(num_orders=10):
     """Generates a dictionary of orders with randomly assigned values."""
     orders_dict = {}
 
     for _ in range(num_orders):
-        order = Orders(
+        order = Orders.Orders(
             Uuid=str(uuid.uuid4()),  # Generate unique order UUID
             isFulfilled=random.choice([True, False]),  # Randomly mark as fulfilled or not
             dateTime=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),  # Current timestamp
-            customerName=random.choice(list(constants.NAMES.values())).strip(),  # Pick random customer name
+            totalPrice=0,                                #begin price at 0 and add at end
+            customerName=random.choice(list(constants.NAMES)),  # Pick random customer name
             employeeId=random.choice(constants.EMPLOYEES)  # Pick random employee ID
         )
 
         order.generateItems()  # Generate random drinks for order
-        order.updateTotalPrice()  # Calculate total price after generating drinks
         orders_dict[order.Uuid] = order.to_dict()  # Convert order to dictionary
 
     return orders_dict
@@ -48,15 +48,15 @@ def run_tests():
 
     # Test 1: Create a Single Order and Print
     print("\n🔹 Test 1: Create a Single Order and Print")
-    single_order = Orders(
+    single_order = Orders.Orders(
         Uuid=str(uuid.uuid4()),
         isFulfilled=False,
         dateTime=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        totalPrice=10.00,
         customerName="Test Customer",
         employeeId="Paul Taele"
     )
     single_order.generateItems()
-    single_order.updateTotalPrice()
     print(single_order)
 
     # Test 2: Generate Multiple Orders and Save to CSV
