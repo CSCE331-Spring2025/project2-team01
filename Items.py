@@ -4,7 +4,7 @@ from Topping import Topping
 
 class Items:
     def __init__(self, Uuid, Flavor, BasePrice, SubFlavor):
-        self.uuid = Uuid
+        self.Uuid = str(Uuid)
         self.flavor = Flavor
         self.basePrice = BasePrice
         self.subFlavor = SubFlavor
@@ -12,7 +12,7 @@ class Items:
 
 
     def getUuid(self):
-        return self.uuid
+        return self.Uuid
     
     def getFlavor(self):
         return self.flavor
@@ -51,7 +51,7 @@ class Items:
     def to_dict(self):
         """Convert the Item object to a dictionary for CSV writing."""
         return {
-            "Item UUID": self.uuid,
+            "Item UUID": str(self.Uuid),
             "Flavor": self.flavor,
             "Base Price": self.basePrice,
             "Sub Flavor": self.subFlavor,

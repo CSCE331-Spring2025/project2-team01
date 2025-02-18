@@ -1,4 +1,3 @@
-import math
 import Items
 import random
 import constants
@@ -21,21 +20,27 @@ class Orders:
     def getTotalPrice(self):
         return self.totalPrice
     def getCustomerName(self):
-        return self.getCustomerName
+        return self.customerName
     def getEmployeeId(self):
         return self.employeeId
     
     def generateItems(self):
-        items = []
+        itemsDict = {}
         for i in range(random.randint(1,10)):
             randomFlavor = random.randint(0,5)
             seedState = random.getstate()
             randomSubflavor = random.randint(0,len(constants.MENU[constants.FLAVORS[randomFlavor]])-1)
             random.setstate(seedState)
-            randomItem = Items.Items(str(uuid.uuid4), constants.FLAVORS[randomFlavor], constants.FLAVORPRICES[constants.FLAVORS[randomFlavor]], constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor])
+            randomItem = Items.Items(
+                        Uuid=str(uuid.uuid4()),
+                        Flavor=constants.FLAVORS[randomFlavor], 
+                        BasePrice=constants.FLAVORPRICES[constants.FLAVORS[randomFlavor]], 
+                        SubFlavor=constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor]
+                        )
             randomItem.generateToppings()
-            items.append(randomItem)
+            itemsDict[randomItem.Uuid] = randomItem.to_dict()
             self.totalPrice += randomItem.getTotalPrice()
+        return itemsDict
         
     def to_dict(self):
         return {

@@ -4,6 +4,7 @@ import datetime
 import csv
 import constants  # Ensure constants.py is correctly imported
 import Orders  # Import Orders class
+import os
 
 def generate_random_orders():
     """Generates a dictionary of orders with randomly assigned values."""
@@ -36,7 +37,8 @@ def generate_random_orders():
                 customerName=random.choice(list(constants.NAMES)),  # Pick random customer name
                 employeeId=random.choice(constants.EMPLOYEES)  # Pick random employee ID
             )
-            order.generateItems()  # Generate random drinks for order
+            itemDict = order.generateItems()  # Generate random drinks for order
+            write_items_to_csv(itemDict)
             orders_dict[order.Uuid] = order.to_dict()  # Convert order to dictionary
         currentDate += datetime.timedelta(days=1)
         currentDate = currentDate.replace(hour=9, minute=0, second=0)
@@ -63,6 +65,32 @@ def write_orders_to_csv(orders_dict, filename="orders.csv"):
             writer.writerow(order)
 
     print(f"✅ CSV file '{filename}' has been created successfully.")
+
+def write_items_to_csv(itemDict, filename="items.csv"):
+    """Writes itemDict to a CSV file, appending if the file exists."""
+    
+    if not itemDict:
+        print("No data to write.")
+        return
+
+    # Extract field names dynamically from the first item
+    fieldnames = list(next(iter(itemDict.values())).keys())
+    
+    file_exists = os.path.isfile(filename)  # Check if file exists
+    
+    with open(filename, mode="a" if file_exists else "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        
+        if not file_exists:  
+            writer.writeheader()  # Write header only if file is new
+
+        for item in itemDict.values():
+            item["Item UUID"] = str(item["Item UUID"])
+            item["Total Price"] = round(item["Total Price"], 2)  # Round Total Price
+            writer.writerow(item)
+
+    #print(f"✅ Data written to '{filename}' successfully.")
+
 
 def run_tests():
     """Runs tests for the Orders class."""
