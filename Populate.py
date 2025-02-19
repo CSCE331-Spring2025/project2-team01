@@ -18,7 +18,7 @@ toppingsData = [['ID', 'type', 'basePrice']]
 
 #Input toppings data from constants
 for i in range(len(constants.TOPPINGS)):
-    toppingsData.append([i+1, constants.TOPPINGS[i], constants.TOPPINGPRICES[constants.TOPPINGS[i]]])
+    toppingsData.append([i+1, constants.TOPPINGS[i].replace(" ", ""), constants.TOPPINGPRICES[constants.TOPPINGS[i]]])
 
 #configure csv and input data
 toppingsCSVFilePath = 'toppings.csv'
