@@ -3,6 +3,27 @@ import uuid
 
 random.seed(10)
 
+def get_item_number(flavor_index, subflavor_index):
+    """Returns the menu item number given the flavor index and subflavor index."""
+    if not (0 <= flavor_index < len(FLAVORS)):  # Ensure valid flavor index
+        return None
+    
+    flavor = FLAVORS[flavor_index]
+    subflavors = MENU.get(flavor, [])
+
+    if not (0 <= subflavor_index < len(subflavors)):  # Ensure valid subflavor index
+        return None
+
+    item_number = 1  # Start numbering from 1
+    for category in FLAVORS:  # Iterate in the same order as FLAVORS
+        for item in MENU[category]:
+            if category == flavor and item == subflavors[subflavor_index]:
+                return item_number
+            item_number += 1
+
+    return None  # Return None if not found
+
+
 MENU = {
     "Brewed tea": [
         "Classicblack",

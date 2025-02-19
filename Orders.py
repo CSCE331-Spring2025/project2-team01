@@ -22,7 +22,7 @@ class Orders:
             randomSubflavor = random.randint(0,len(constants.MENU[constants.FLAVORS[randomFlavor]])-1)
             random.setstate(seedState)
             randomItem = Items.Items(
-                        Uuid=str(uuid.uuid4()),
+                        Uuid=constants.get_item_number(randomFlavor, randomSubflavor),
                         Flavor=constants.FLAVORS[randomFlavor], 
                         BasePrice=constants.FLAVORPRICES[constants.FLAVORS[randomFlavor]], 
                         SubFlavor=constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor]
