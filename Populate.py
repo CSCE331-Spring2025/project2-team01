@@ -146,8 +146,8 @@ def write_orders_to_csv(orders_dict, filename="orders.csv"):
         writer.writeheader()
         # Check if 'Total Price' exists and round it
         for order in orders_dict.values():
-            if "Total Price" in order and isinstance(order["Total Price"], (int, float)):
-                order["Total Price"] = round(order["Total Price"], 2)
+            if "TotalPrice" in order and isinstance(order["TotalPrice"], (int, float)):
+                order["TotalPrice"] = round(order["TotalPrice"], 2)
 
             writer.writerow(order)
 
