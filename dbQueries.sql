@@ -231,17 +231,17 @@ FROM orders
 GROUP BY month
 ORDER BY month;
 
--- TODO FIX
 -- Customer Lifetime Value (CLV) What is the estimated lifetime value of each customer?
 SELECT 
-    customername, 
-    COUNT(*) AS totalOrders, 
-    SUM(totalprice) AS totalSpent,
-    ROUND(SUM(totalprice) / NULLIF(COUNT(*), 0), 2) AS avgOrderValue,
-    ROUND((SUM(totalprice) / NULLIF(COUNT(*), 0)) * COUNT(*) * 0.5, 2) AS estimatedCLV  -- Assuming 50% retention rate
+    customername,
+    COUNT(*) AS totalOrders,
+    ROUND(SUM(totalprice)::NUMERIC, 2) AS totalSpent,
+    ROUND(SUM(totalprice)::NUMERIC / NULLIF(COUNT(*), 0), 2) AS avgOrderValue,
+    ROUND((SUM(totalprice)::NUMERIC / NULLIF(COUNT(*), 0)) * COUNT(*) * 0.5, 2) AS estimatedCLV
 FROM orders
 GROUP BY customername
 ORDER BY estimatedCLV DESC;
+
 
 --Query to get all items containing allergens
 SELECT DISTINCT i.name
