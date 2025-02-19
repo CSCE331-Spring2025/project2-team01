@@ -42,6 +42,7 @@ pseudocode: select top 10 sums of order total grouped by day in descending order
 about: given a specific day, what was the sum of the top 10 order totals?
 example: "30 August has $12345 of top sales"
 */
+-- TODO FIXXXX
 SELECT 
     TOCHAR(orderDate, 'DD Mon') AS orderDay,
     SUM(totalprice) AS totalOrderSum
@@ -130,7 +131,7 @@ InventoryExpense AS (
 ),
 EmployeeExpense AS (
     SELECT 
-        SUM(payGrade * 'hours') AS totalEmployeeExpense
+        SUM(payGrade * hours) AS totalEmployeeExpense
     FROM Employee
 )
 SELECT 
@@ -142,7 +143,7 @@ SELECT
 FROM WeeklyOrders
 CROSS JOIN InventoryExpense
 CROSS JOIN EmployeeExpense
-ORDER BY WeeklyOrders.week_start;
+ORDER BY WeeklyOrders.weekStart;
 
 
 /* 
