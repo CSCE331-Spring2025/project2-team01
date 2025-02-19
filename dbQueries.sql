@@ -221,13 +221,12 @@ FROM orders
 GROUP BY season
 ORDER BY totalSales DESC;
 
--- TODO FIX
 -- Sales Conversion Rates - What is the conversion rate of orders to fulfilled orders
 SELECT 
     DATE_TRUNC('month', orderdate) AS month,
     COUNT(*) AS totalOrders,
     SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END) AS fulfilledOrders,
-    ROUND((SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END)::FLOAT / COUNT(*)) * 100, 2) AS conversionRate
+    ROUND((SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END)::NUMERIC / COUNT(*)) * 100, 2) AS conversionRate
 FROM orders
 GROUP BY month
 ORDER BY month;
@@ -266,14 +265,6 @@ LIMIT 3;
 
 
 --Query to get 3 least performing employees, their hours, and their respective managers
-SELECT e1.name AS EmployeeName, e1.hours, e2.name AS ManagerName
-FROM Employee e1
-LEFT JOIN Employee e2 ON e2.isManager = TRUE
-ORDER BY e1.hours ASC
-LIMIT 3;
-
-
-
 SELECT e.ID, e.name, e.hours, 
        CASE WHEN e.isManager THEN 'Manager' ELSE 'Employee' END AS role, 
        COALESCE(SUM(o.totalPrice), 0) AS total_sales
