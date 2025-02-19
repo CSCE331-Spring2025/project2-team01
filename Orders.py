@@ -2,6 +2,8 @@ import Items
 import random
 import constants
 import uuid
+import csv
+import os
 
 class Orders:
     def __init__(self, Uuid, isFulfilled, dateTime, totalPrice, customerName, employeeId):
@@ -44,10 +46,10 @@ class Orders:
         
     def to_dict(self):
         return {
-            "Order UUID": self.Uuid,
-            "Is Fulfilled": self.isFulfilled,
-            "Date Time": self.dateTime,
-            "Total Price": self.totalPrice,
-            "Customer Name": self.customerName,
-            "Employee UUID": self.employeeId
+            "OrderUUID": self.Uuid,
+            "IsFulfilled": self.isFulfilled,
+            "DateTime": self.dateTime,
+            "TotalPrice": self.totalPrice,
+            "CustomerName": self.customerName,
+            "EmployeeUUID": self.employeeId
         }
