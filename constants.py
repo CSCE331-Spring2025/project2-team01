@@ -234,16 +234,16 @@ FLAVORS = [
 
 MANAGER = 'Queen Rev'
 
-EMPLOYEES = {'Paul Taele': str(uuid.uuid4), 
-             'Philip Ritchey': str(uuid.uuid4), 
-             'Aakash Tyagi': str(uuid.uuid4), 
-             'Teresa Leyk': str(uuid.uuid4), 
-             'Sandeep Kumar': str(uuid.uuid4), 
-             'David Kebo': str(uuid.uuid4), 
-             'Tim Davis': str(uuid.uuid4),
-             'Riccardo Bettati': str(uuid.uuid4),
-             'Hyunyoung Lee': str(uuid.uuid4), 
-             'Michael Moore': str(uuid.uuid4)
+EMPLOYEES = {'Paul Taele': str(uuid.uuid4()), 
+             'Philip Ritchey': str(uuid.uuid4()), 
+             'Aakash Tyagi': str(uuid.uuid4()), 
+             'Teresa Leyk': str(uuid.uuid4()), 
+             'Sandeep Kumar': str(uuid.uuid4()), 
+             'David Kebo': str(uuid.uuid4()), 
+             'Tim Davis': str(uuid.uuid4()),
+             'Riccardo Bettati': str(uuid.uuid4()),
+             'Hyunyoung Lee': str(uuid.uuid4()), 
+             'Michael Moore': str(uuid.uuid4())
 }
 
 ALLERGENS = {

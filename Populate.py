@@ -17,7 +17,7 @@ random.seed(10)
 toppingsData = [['ID', 'type', 'basePrice']]
 #Input toppings data from constants
 for i in range(len(constants.TOPPINGS)):
-    toppingsData.append([i+1, constants.TOPPINGS[i], constants.TOPPINGPRICES[constants.TOPPINGS[i]]])
+    toppingsData.append([i+1, constants.TOPPINGS[i].replace(" ",""), constants.TOPPINGPRICES[constants.TOPPINGS[i]]])
 #configure csv and input data
 toppingsCSVFilePath = 'toppings.csv'
 with open(toppingsCSVFilePath, mode = 'w', newline='') as file:
@@ -33,7 +33,7 @@ itemData = [['ID', 'name', 'basePrice', 'subFlavor']]
 itemID = 1
 for i in range(len(constants.FLAVORS)):
     for j in range(len(constants.MENU[constants.FLAVORS[i]])):
-        itemData.append([itemID, constants.FLAVORS[i], constants.FLAVORPRICES[constants.FLAVORS[i]], constants.MENU[constants.FLAVORS[i]][j]])
+        itemData.append([itemID, constants.FLAVORS[i].replace(" ",""), constants.FLAVORPRICES[constants.FLAVORS[i]], constants.MENU[constants.FLAVORS[i]][j].replace(" ", "")])
         itemID+=1
 #configure csv and input data
 itemCSVFilePath = 'item.csv'
@@ -44,17 +44,25 @@ print('Item data file created successfully. ' )
 
 
 ### EMPLOYEES ###
-#Create Employee CSV
-employeeData = [['ID', 'isManager', 'name', 'payGrade' ,'hours']]
-#input iteam data from constants
-employeeData.append([1, True, constants.MANAGER, round(constants.random.uniform(22.00, 28.00),2), 8])
-for i in range(len(constants.EMPLOYEES)):
-    employeeData.append([i+2, False, constants.EMPLOYEES[i], round(constants.random.uniform(13.00, 21.00), 2), constants.random.randint(3, 8)])
-#configure csv and input data
+# Create Employee CSV
+employeeData = [['ID', 'UUID', 'isManager', 'name', 'payGrade', 'hours']]
+
+# Add manager first
+employeeData.append([1, str(uuid.uuid4()), True, constants.MANAGER, round(random.uniform(22.00, 28.00), 2), 8])
+
+# Add employees from dictionary
+for i, (name, _) in enumerate(constants.EMPLOYEES.items(), start=2):  
+    employee_uuid = str(uuid.uuid4())  # Generate a new UUID for each employee
+    pay_grade = round(random.uniform(13.00, 21.00), 2)
+    hours = random.randint(3, 8)
+    employeeData.append([i, employee_uuid, False, name.replace(" ",""), pay_grade, hours])
+
+# Configure CSV and write data
 employeeCSVFilePath = 'employees.csv'
-with open(employeeCSVFilePath, mode = 'w', newline = '') as file:
+with open(employeeCSVFilePath, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(employeeData)
+
 print('Employee data file created successfully')
 
 
@@ -70,7 +78,7 @@ for i in range(len(constants.FLAVORS)):
 ingredientsList = list(set(ingredientsList))
 #input inventory data from constants 
 for i in range(len(ingredientsList)):
-    inventoryData.append([i+1, ingredientsList[i], constants.ALLERGENS[ingredientsList[i]], sys.maxsize, constants.MATERIALUNITPRICE[ingredientsList[i]],   round((sys.maxsize/1000)*constants.MATERIALUNITPRICE[ingredientsList[i]],2)])
+    inventoryData.append([i+1, ingredientsList[i].replace(" ",""), constants.ALLERGENS[ingredientsList[i]], 15000, constants.MATERIALUNITPRICE[ingredientsList[i]],   round(15000*constants.MATERIALUNITPRICE[ingredientsList[i]],2)])
 #configure csv and input data
 inventoryCSVFilePath = 'inventory.csv'
 with open(inventoryCSVFilePath, mode='w', newline='') as file:
