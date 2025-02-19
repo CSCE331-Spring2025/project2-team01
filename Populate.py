@@ -76,6 +76,8 @@ inventoryData = [['ID', 'name', 'isAllergen', 'stockQuantity', 'unitPrice', 'cos
 
 #first compile a list of all the ingredients from recipes
 ingredientsList = []
+for i in range(len(constants.TOPPINGS)):
+    ingredientsList.append(constants.TOPPINGS[i])
 for i in range(len(constants.FLAVORS)):
     for j in range(len(constants.MENU[constants.FLAVORS[i]])):
         for k in range(len(constants.ITEMSINGREDIENTS[constants.MENU[constants.FLAVORS[i]][j]])):
