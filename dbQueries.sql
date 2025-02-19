@@ -44,7 +44,7 @@ example: "30 August has $12345 of top sales"
 */
 -- TODO FIX
 SELECT 
-    TOCHAR(orderDate, 'DD Mon') AS orderDay,
+    TO_CHAR(orderDate::DATE, 'DD Mon') AS orderDay,
     SUM(totalprice) AS totalOrderSum
 FROM Orders
 GROUP BY orderDate::DATE
@@ -86,14 +86,15 @@ Show which employee had the most sales in dollars in december
 */
 -- TODO FIX
 SELECT 
-    E.name AS employee_name,
-    SUM(O.totalPrice) AS total_sales
-FROM Orders O
-JOIN Employee E ON O.employeeId = E.ID
-WHERE STRFTIME('%m', O.dateTime) = '12'  -- Filters for December
-GROUP BY O.employeeId
-ORDER BY total_sales DESC
+    E.name AS employeename,
+    SUM(O.totalPrice) AS totalsales
+FROM orders O
+JOIN employee E ON O.employeeId = E.ID
+WHERE EXTRACT(MONTH FROM O.orderdate) = 12  -- Filters for December
+GROUP BY E.name
+ORDER BY totalsales DESC
 LIMIT 1;  -- Gets the top employee
+
 
 
 /* 
@@ -234,3 +235,31 @@ SELECT
 FROM orders
 GROUP BY customername
 ORDER BY estimatedCLV DESC;
+
+--Query to get all items containing allergens
+SELECT DISTINCT i.name
+FROM Item i
+JOIN ItemIngredients ii ON i.ID = ii.drinkFlavorID
+JOIN Inventory inv ON ii.inventoryId = inv.ID
+WHERE inv.isAllergen = TRUE;
+
+--Query to get top 3 used ingredients in the last month of sales
+SELECT i.name AS ingredient_name, SUM(ii.quantity + ti.quantity) AS total_quantity
+FROM Inventory i
+LEFT JOIN ItemIngredients ii ON i.ID = ii.inventoryId
+LEFT JOIN ToppingIngredients ti ON i.ID = ti.inventoryId
+LEFT JOIN OrderItem oi ON ii.drinkFlavorID = oi.itemId
+LEFT JOIN OrderItemToppings oit ON ti.toppingId = oit.toppingId
+LEFT JOIN Orders o ON oi.orderId = o.ID OR oit.orderItemId = oi.ID
+WHERE o.dateTime >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+GROUP BY i.name
+ORDER BY total_quantity DESC
+LIMIT 3;
+
+
+--Query to get 3 least performing employees, their hours, and their respective managers
+SELECT e1.name AS EmployeeName, e1.hours, e2.name AS ManagerName
+FROM Employee e1
+LEFT JOIN Employee e2 ON e2.isManager = TRUE
+ORDER BY e1.hours ASC
+LIMIT 3;

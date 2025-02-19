@@ -287,10 +287,34 @@ ALLERGENS = {
     'Mango': False,
     'Herb jelly': False,
     'Pineapple': False,
-    'Mint': False
+    'Mint': False,
+    "Pearl": False,
+    "Crystal boba": False,
+    "Mini pearl": False,
+    "Lychee jelly": False,
+    "Pudding": True,  # May contain dairy or eggs
+    "Aloe vera": False,
+    "Herb jelly": False,
+    "Crema": True,  # Often contains dairy
+    "Aiyu jelly": False,
+    "Ice cream": True,  # Contains dairy
+    "Honey pack": False,
+    "Edible green": False
 }
 
 MATERIALUNITPRICE = {
+    "Pearl": 0.50,
+    "Crystal boba": 0.60,
+    "Mini pearl": 0.55,
+    "Lychee jelly": 0.70,
+    "Pudding": 0.75,
+    "Aloe vera": 0.80,
+    "Herb jelly": 0.65,
+    "Crema": 0.90,
+    "Aiyu jelly": 0.85,
+    'Ice cream': 1.00,
+    "Honey pack": 0.95,
+    "Edible green": 0.60,
     'Hokkaido milk': 3.50,
     'Lime': 0.75,
     'Lemon': 0.80,
