@@ -1,7 +1,9 @@
-import uuid
+import Items
 import random
-import constants  # Ensure this is correctly imported
-from Items import Items  # Import Items class
+import constants
+import uuid
+import csv
+import os
 
 class Orders:
     def __init__(self, Uuid=None, isFulfilled=False, dateTime=None, customerName=None, employeeId=None):
@@ -55,14 +57,10 @@ class Orders:
     def to_dict(self):
         """Convert the Order object to a dictionary for CSV export."""
         return {
-            "Order UUID": self.Uuid,
-            "Is Fulfilled": self.isFulfilled,
-            "Date & Time": self.dateTime,
-            "Total Price": round(self.totalPrice, 2),
-            "Customer Name": self.customerName,
-            "Employee ID": self.employeeId,
-            "Items": " | ".join([f"{drink.flavor} ({drink.subFlavor}) - ${drink.getTotalPrice():.2f}" for drink in self.items])  # Drinks summary
+            "OrderUUID": self.Uuid,
+            "IsFulfilled": self.isFulfilled,
+            "DateTime": self.dateTime,
+            "TotalPrice": self.totalPrice,
+            "CustomerName": self.customerName,
+            "EmployeeUUID": self.employeeId
         }
-
-    def __repr__(self):
-        return f"Orders(Uuid={self.Uuid}, isFulfilled={self.isFulfilled}, dateTime={self.dateTime}, totalPrice={self.totalPrice:.2f}, customerName={self.customerName}, employeeId={self.employeeId}, items={[drink.flavor for drink in self.items]})"
