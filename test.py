@@ -4,6 +4,7 @@ import datetime
 import csv
 import constants  # Ensure constants.py is correctly imported
 import Orders  # Import Orders class
+from Topping import Topping  # Import Topping class
 import os
 
 def generate_random_orders():
@@ -91,6 +92,41 @@ def write_items_to_csv(itemDict, filename="items.csv"):
 
     #print(f"✅ Data written to '{filename}' successfully.")
 
+def generate_toppings():
+    """Generates a dictionary of random toppings and their prices."""
+    toppings_dict = {}
+    
+    for topping_type in constants.TOPPINGS:
+        topping = Topping(
+            uuid=str(uuid.uuid4()),  # Generate unique topping UUID
+            type=topping_type,  # Topping type from the constants.TOPPINGS list
+            basePrice=constants.TOPPINGPRICES[topping_type]  # Base price from constants.TOPPINGPRICES
+        )
+        toppings_dict[topping.getUuid()] = topping.to_dict()  # Convert to dictionary for CSV
+
+    return toppings_dict
+
+def write_toppings_to_csv(toppings_dict, filename="toppings.csv"):
+    """Writes the toppings data to a CSV file using DictWriter."""
+    with open(filename, mode="w", newline="") as file:
+        if not toppings_dict:
+            print("No data to write.")
+            return
+
+        # Extract field names dynamically from the first topping
+        fieldnames = list(next(iter(toppings_dict.values())).keys())
+
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for topping in toppings_dict.values():
+            topping["Topping Price"] = round(topping["Topping Price"], 2)  # Round topping price
+            writer.writerow(topping)
+
+    print(f"✅ CSV file '{filename}' has been created successfully.")
+
+
+
 
 def run_tests():
     """Runs tests for the Orders class."""
@@ -114,6 +150,10 @@ def run_tests():
     orders = generate_random_orders()  # Generate 1000 random orders
     write_orders_to_csv(orders)  # Save orders to CSV
 
+    # Test 3: Generate Random Toppings and Save to CSV
+    print("\n🔹 Test 3: Generating Random Toppings and Saving to CSV")
+    toppings = generate_toppings()  # Generate random toppings
+    write_toppings_to_csv(toppings)  # Save toppings to CSV
     print("\n✅ All tests completed successfully!")
 
 # Run tests
