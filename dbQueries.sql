@@ -222,13 +222,12 @@ FROM orders
 GROUP BY season
 ORDER BY totalSales DESC;
 
--- TODO FIX
 -- Sales Conversion Rates - What is the conversion rate of orders to fulfilled orders
 SELECT 
     DATE_TRUNC('month', orderdate) AS month,
     COUNT(*) AS totalOrders,
     SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END) AS fulfilledOrders,
-    ROUND((SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END)::FLOAT / COUNT(*)) * 100, 2) AS conversionRate
+    ROUND((SUM(CASE WHEN isfulfilled THEN 1 ELSE 0 END)::NUMERIC / COUNT(*)) * 100, 2) AS conversionRate
 FROM orders
 GROUP BY month
 ORDER BY month;
