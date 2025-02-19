@@ -15,7 +15,7 @@ class Orders:
         self.totalPrice = 0.0  # Initialize total price
 
     def generateItems(self):
-        itemsDict = {}
+        orderItemsDict = {}
         for i in range(random.randint(1,10)):
             randomFlavor = random.randint(0,5)
             seedState = random.getstate()
@@ -28,9 +28,16 @@ class Orders:
                         SubFlavor=constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor]
                         )
             randomItem.generateToppings()
-            itemsDict[randomItem.Uuid] = randomItem.to_dict()
+            orderItemsDict[uuid.uuid4()] = {
+                            "orderItemUuid": uuid.uuid4(),
+                            "orderId": self.getUuid(),
+                            "itemId": randomItem.getUuid(),
+                            "quantity": 1,
+                            "subTotal": round(randomItem.getTotalPrice(), 2)
+            }
+                            
             self.totalPrice += randomItem.getTotalPrice()
-        return itemsDict
+        return orderItemsDict
 
     def updateTotalPrice(self):
         """Updates and returns the total price of all drinks in the order."""

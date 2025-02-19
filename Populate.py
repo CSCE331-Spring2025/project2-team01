@@ -5,12 +5,21 @@ import sys
 import Orders
 import datetime
 import uuid
+import os
 
 """ This file populates five tables with constant data """
 
 
 #Random var for any random values required
 random.seed(10)
+
+files = ["employees.csv", "inventory.csv", "item.csv", "orderItems.csv", "orders.csv", "toppings.csv"]
+for filepath in files:
+    if os.path.exists(filepath):
+        os.remove(filepath)
+        print(f"File '{filepath}' deleted successfully.")
+    else:
+        print(f"File '{filepath}' does not exist.")
 
 ### TOPPINGS ##
 #Create Toppings CSV
@@ -56,7 +65,6 @@ employeeData.append([constants.EMPLOYEEUUIDS[0], True, constants.MANAGER.replace
 # Add employees from lists using indexing
 for i in range(1, len(constants.EMPLOYEES)):
     employee_uuid = constants.EMPLOYEEUUIDS[i]  # Get corresponding UUID
-    print(employee_uuid)
     name = constants.EMPLOYEES[i].replace(" ", "")  # Format name
     pay_grade = round(random.uniform(13.00, 21.00), 2)
     hours = random.randint(3, 8)
@@ -128,7 +136,7 @@ def generate_random_orders():
                 employeeId=random.choice(constants.EMPLOYEEUUIDS)  # Pick random employee ID
             )
             itemDict = order.generateItems()  # Generate random drinks for order
-            #write_items_to_csv(itemDict)
+            write_orderItems_to_csv(itemDict)
             orders_dict[order.Uuid] = order.to_dict()  # Convert order to dictionary
         currentDate += datetime.timedelta(days=1)
         currentDate = currentDate.replace(hour=9, minute=0, second=0)
@@ -155,6 +163,26 @@ def write_orders_to_csv(orders_dict, filename="orders.csv"):
             writer.writerow(order)
 
     print(f"✅ CSV file '{filename}' has been created successfully.")
+
+def write_orderItems_to_csv(itemDict, filename="orderItems.csv"):
+    """Writes itemDict to a CSV file, appending if the file exists."""
+    if not itemDict:
+        print("No data to write.")
+        return
+    # Extract field names dynamically from the first item
+    fieldnames = list(next(iter(itemDict.values())).keys())
+    file_exists = os.path.isfile(filename)  # Check if file exists
+    with open(filename, mode="a" if file_exists else "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        if not file_exists:  
+            writer.writeheader()  # Write header only if file is new
+        for item in itemDict.values():
+            #item["Item UUID"] = str(item["Item UUID"])
+            item["subTotal"] = round(item["subTotal"], 2)  # Round Total Price
+
+            writer.writerow(item)
+
+    #print(f"✅ Data written to '{filename}' successfully.")
 
 orders = generate_random_orders()  # Generate 1000 random orders
 write_orders_to_csv(orders)  # Save orders to CSV
