@@ -1,15 +1,15 @@
 import csv
 import constants
 import random
-import Topping
-import Inventory
 import sys
+
+""" This file populates five tables with coinstant data """
 
 
 #Random var for any random values required
 random.seed(10)
 
-
+### TOPPINGS ##
 #Create Toppings CSV
 toppingsData = [['ID', 'type', 'basePrice']]
 #Input toppings data from constants
@@ -23,7 +23,7 @@ with open(toppingsCSVFilePath, mode = 'w', newline='') as file:
 print('Toppings data file created successfully. ' )
 
 
-
+### ITEMS ###
 #Create Item CSV
 itemData = [['ID', 'name', 'basePrice', 'subFlavor']]
 #input item data from constants
@@ -40,7 +40,7 @@ with open(itemCSVFilePath, mode = 'w', newline='') as file:
 print('Item data file created successfully. ' ) 
 
 
-
+### EMPLOYEES ###
 #Create Employee CSV
 employeeData = [['ID', 'isManager', 'name', 'payGrade' ,'hours']]
 #input iteam data from constants
@@ -53,9 +53,9 @@ with open(employeeCSVFilePath, mode = 'w', newline = '') as file:
     writer = csv.writer(file)
     writer.writerows(employeeData)
 print('Employee data file created successfully')
- 
-    
- 
+
+
+### INVENTORY ###
 #Create Inventory CSV
 inventoryData = [['ID', 'name', 'isAllergen', 'stockQuantity', 'unitPrice', 'cost']]
 #first compile a list of all the ingredients from recipes
@@ -74,8 +74,10 @@ with open(inventoryCSVFilePath, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(inventoryData)
 print('Inventory data file created successfully')
-            
 
+
+### ORDERS ###
 #Create Orders CSV
 #For randomness: random employee, random item, random number of items, random toppings, random number of toppings
 #keep track of the sum, making sure total sales exceeds beta million 
+
