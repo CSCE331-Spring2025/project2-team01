@@ -1,3 +1,13 @@
+/*
+DEMO QUERIES:
+
+top 5 toppings
+top 10 most popular items
+profit and loss
+top 10 highest spending customers
+3 least performing employee
+*/
+
 -- FINISHED QUERIES GO HERE 
 
 /* 
