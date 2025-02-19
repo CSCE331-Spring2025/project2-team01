@@ -49,17 +49,17 @@ print('Item data file created successfully. ' )
 
 ### EMPLOYEES ###
 # Create Employee CSV
-employeeData = [['ID', 'UUID', 'isManager', 'name', 'payGrade', 'hours']]
+employeeData = [['UUID', 'isManager', 'name', 'payGrade', 'hours']]
 
 # Add manager first
-employeeData.append([1, str(uuid.uuid4()), True, constants.MANAGER, round(random.uniform(22.00, 28.00), 2), 8])
+employeeData.append([str(uuid.uuid4()), True, constants.MANAGER.replace(" ", ""), round(random.uniform(22.00, 28.00), 2), 8])
 
 # Add employees from dictionary
 for i, (name, _) in enumerate(constants.EMPLOYEES.items(), start=2):  
     employee_uuid = str(uuid.uuid4())  # Generate a new UUID for each employee
     pay_grade = round(random.uniform(13.00, 21.00), 2)
     hours = random.randint(3, 8)
-    employeeData.append([i, employee_uuid, False, name.replace(" ",""), pay_grade, hours])
+    employeeData.append([employee_uuid, False, name.replace(" ",""), pay_grade, hours])
 
 # Configure CSV and write data
 employeeCSVFilePath = 'employees.csv'
