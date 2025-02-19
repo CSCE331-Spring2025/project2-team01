@@ -266,14 +266,6 @@ LIMIT 3;
 
 
 --Query to get 3 least performing employees, their hours, and their respective managers
-SELECT e1.name AS EmployeeName, e1.hours, e2.name AS ManagerName
-FROM Employee e1
-LEFT JOIN Employee e2 ON e2.isManager = TRUE
-ORDER BY e1.hours ASC
-LIMIT 3;
-
-
-
 SELECT e.ID, e.name, e.hours, 
        CASE WHEN e.isManager THEN 'Manager' ELSE 'Employee' END AS role, 
        COALESCE(SUM(o.totalPrice), 0) AS total_sales
