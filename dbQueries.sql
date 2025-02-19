@@ -4,8 +4,8 @@ DEMO QUERIES:
 top 5 toppings
 top 10 most popular items
 profit and loss
-top 10 highest spending customers
-3 least performing employee
+top 10 highest spending customers -- DONE
+3 least performing employee -- DONE
 */
 
 -- FINISHED QUERIES GO HERE 
@@ -52,7 +52,6 @@ pseudocode: select top 10 sums of order total grouped by day in descending order
 about: given a specific day, what was the sum of the top 10 order totals?
 example: "30 August has $12345 of top sales"
 */
--- TODO FIX
 SELECT 
     TO_CHAR(orderDate::DATE, 'DD Mon') AS orderDay,
     SUM(totalprice) AS totalOrderSum
