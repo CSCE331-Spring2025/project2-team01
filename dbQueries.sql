@@ -42,7 +42,7 @@ pseudocode: select top 10 sums of order total grouped by day in descending order
 about: given a specific day, what was the sum of the top 10 order totals?
 example: "30 August has $12345 of top sales"
 */
--- TODO FIXXXX
+-- TODO FIX
 SELECT 
     TOCHAR(orderDate, 'DD Mon') AS orderDay,
     SUM(totalprice) AS totalOrderSum
@@ -70,7 +70,7 @@ ORDER BY inventoryItemCount DESC;
 Functional Query
 Show the most popular 5 toppings by sales
 */
-
+-- TODO FIX
 SELECT 
     T.type AS topping_name, 
     COUNT(OIT.toppingId) AS total_sales
@@ -84,7 +84,7 @@ LIMIT 5;
 Functional Query
 Show which employee had the most sales in dollars in december
 */
-
+-- TODO FIX
 SELECT 
     E.name AS employee_name,
     SUM(O.totalPrice) AS total_sales
@@ -197,6 +197,7 @@ GROUP BY customername
 HAVING COUNT(*) > 1
 ORDER BY orderCount DESC;
 
+-- TODO FIX (minor)
 -- Sales Trends by Season - How do sales vary by season?
 SELECT 
     CASE 
@@ -211,6 +212,7 @@ FROM orders
 GROUP BY season
 ORDER BY totalSales DESC;
 
+-- TODO FIX
 -- Sales Conversion Rates - What is the conversion rate of orders to fulfilled orders
 SELECT 
     DATE_TRUNC('month', orderdate) AS month,
@@ -221,6 +223,7 @@ FROM orders
 GROUP BY month
 ORDER BY month;
 
+-- TODO FIX
 -- Customer Lifetime Value (CLV) What is the estimated lifetime value of each customer?
 SELECT 
     customername, 
