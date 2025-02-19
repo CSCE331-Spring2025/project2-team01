@@ -54,7 +54,7 @@ employeeData = [['UUID', 'isManager', 'name', 'payGrade', 'hours']]
 employeeData.append([constants.EMPLOYEEUUIDS[0], True, constants.MANAGER.replace(" ", ""), round(random.uniform(22.00, 28.00), 2), 8])
 
 # Add employees from lists using indexing
-for i in range(1, len(constants.EMPLOYEES)-1):
+for i in range(1, len(constants.EMPLOYEES)):
     employee_uuid = constants.EMPLOYEEUUIDS[i]  # Get corresponding UUID
     print(employee_uuid)
     name = constants.EMPLOYEES[i].replace(" ", "")  # Format name

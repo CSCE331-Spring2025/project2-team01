@@ -257,7 +257,6 @@ EMPLOYEEUUIDS = [
             str(uuid.uuid4()),
             str(uuid.uuid4()),
             str(uuid.uuid4()),
-            str(uuid.uuid4()),
             str(uuid.uuid4())
 ]
 
