@@ -208,7 +208,6 @@ GROUP BY customername
 HAVING COUNT(*) > 1
 ORDER BY orderCount DESC;
 
--- TODO FIX (minor)
 -- Sales Trends by Season - How do sales vary by season?
 SELECT 
     CASE 
@@ -218,7 +217,7 @@ SELECT
         ELSE 'Fall'
     END AS season,
     COUNT(*) AS totalOrders,
-    SUM(totalprice) AS totalSales
+    ROUND(SUM(totalprice)::numeric, 2) AS totalSales
 FROM orders
 GROUP BY season
 ORDER BY totalSales DESC;
