@@ -47,19 +47,20 @@ with open(itemCSVFilePath, mode = 'w', newline='') as file:
 print('Item data file created successfully. ' ) 
 
 
-### EMPLOYEES ###
 # Create Employee CSV
 employeeData = [['UUID', 'isManager', 'name', 'payGrade', 'hours']]
 
 # Add manager first
-employeeData.append([str(uuid.uuid4()), True, constants.MANAGER.replace(" ", ""), round(random.uniform(22.00, 28.00), 2), 8])
+employeeData.append([constants.EMPLOYEEUUIDS[0], True, constants.MANAGER.replace(" ", ""), round(random.uniform(22.00, 28.00), 2), 8])
 
-# Add employees from dictionary
-for i, (name, _) in enumerate(constants.EMPLOYEES.items(), start=2):  
-    employee_uuid = str(uuid.uuid4())  # Generate a new UUID for each employee
+# Add employees from lists using indexing
+for i in range(1, len(constants.EMPLOYEES)-1):
+    employee_uuid = constants.EMPLOYEEUUIDS[i]  # Get corresponding UUID
+    print(employee_uuid)
+    name = constants.EMPLOYEES[i].replace(" ", "")  # Format name
     pay_grade = round(random.uniform(13.00, 21.00), 2)
     hours = random.randint(3, 8)
-    employeeData.append([employee_uuid, False, name.replace(" ",""), pay_grade, hours])
+    employeeData.append([employee_uuid, False, name, pay_grade, hours])
 
 # Configure CSV and write data
 employeeCSVFilePath = 'employees.csv'
@@ -124,7 +125,7 @@ def generate_random_orders():
                 dateTime=currentDate,  # Current timestamp
                 totalPrice=0.0,                                #begin price at 0 and add at end
                 customerName=random.choice(list(constants.NAMES)).replace(" ",""),  # Pick random customer name
-                employeeId=random.choice(list(constants.EMPLOYEES.values()))  # Pick random employee ID
+                employeeId=random.choice(constants.EMPLOYEEUUIDS)  # Pick random employee ID
             )
             itemDict = order.generateItems()  # Generate random drinks for order
             #write_items_to_csv(itemDict)
