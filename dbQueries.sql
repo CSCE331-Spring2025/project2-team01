@@ -263,3 +263,14 @@ FROM Employee e1
 LEFT JOIN Employee e2 ON e2.isManager = TRUE
 ORDER BY e1.hours ASC
 LIMIT 3;
+
+
+
+SELECT e.ID, e.name, e.hours, 
+       CASE WHEN e.isManager THEN 'Manager' ELSE 'Employee' END AS role, 
+       COALESCE(SUM(o.totalPrice), 0) AS total_sales
+FROM Employee e
+LEFT JOIN Orders o ON e.ID = o.employeeId
+GROUP BY e.ID, e.name, e.hours, e.isManager
+ORDER BY total_sales ASC
+LIMIT 3;
