@@ -44,7 +44,7 @@ example: "30 August has $12345 of top sales"
 */
 -- TODO FIXXXX
 SELECT 
-    TOCHAR(orderDate, 'DD Mon') AS orderDay,
+    TO_CHAR(orderDate::DATE, 'DD Mon') AS orderDay,
     SUM(totalprice) AS totalOrderSum
 FROM Orders
 GROUP BY orderDate::DATE
@@ -65,35 +65,21 @@ FROM ItemIngredients
 GROUP BY ItemIngredients.drinkFlavorId
 ORDER BY inventoryItemCount DESC;
 
-
-/*
-Functional Query
-Show the most popular 5 toppings by sales
-*/
-
-SELECT 
-    T.type AS topping_name, 
-    COUNT(OIT.toppingId) AS total_sales
-FROM OrderItemToppings OIT
-JOIN Toppings T ON OIT.toppingId = T.ID
-GROUP BY OIT.toppingId
-ORDER BY total_sales DESC
-LIMIT 5;
-
 /*
 Functional Query
 Show which employee had the most sales in dollars in december
-*/
+*/ -- Empty table?
 
 SELECT 
-    E.name AS employee_name,
-    SUM(O.totalPrice) AS total_sales
-FROM Orders O
-JOIN Employee E ON O.employeeId = E.ID
-WHERE STRFTIME('%m', O.dateTime) = '12'  -- Filters for December
-GROUP BY O.employeeId
-ORDER BY total_sales DESC
+    E.name AS employeename,
+    SUM(O.totalPrice) AS totalsales
+FROM orders O
+JOIN employee E ON O.employeeId = E.ID
+WHERE EXTRACT(MONTH FROM O.orderdate) = 12  -- Filters for December
+GROUP BY E.name
+ORDER BY totalsales DESC
 LIMIT 1;  -- Gets the top employee
+
 
 
 /* 
