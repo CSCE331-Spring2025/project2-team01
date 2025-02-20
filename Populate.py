@@ -13,7 +13,7 @@ import os
 #Random var for any random values required
 random.seed(10)
 
-files = ["employees.csv", "inventory.csv", "item.csv", "orderItems.csv", "orders.csv", "toppings.csv"]
+files = ["employees.csv", "inventory.csv", "item.csv", "orderItems.csv", "orders.csv", "toppings.csv", "orderItemToppings.csv"]
 for filepath in files:
     if os.path.exists(filepath):
         os.remove(filepath)

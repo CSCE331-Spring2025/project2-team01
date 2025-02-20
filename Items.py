@@ -32,7 +32,7 @@ class Items:
             sum += t.getBasePrice()
         return sum
     
-    def generateToppings(self):
+    def generateToppings(self, orderItemId, itemId):
         # write a program that picks random toppings from constants
         # pick two random numbers, first is the number of toppings, second is the actual toppings
 
@@ -43,10 +43,22 @@ class Items:
                 
         # create Topping objects for each selected topping
         self.toppings = [
-            Topping(str(uuid.uuid4()), topping, constants.TOPPINGPRICES.get(topping, 0.50)) 
+            Topping(
+                uuid=constants.TOPPINGS.index(topping), 
+                type=topping, 
+                basePrice=constants.TOPPINGPRICES.get(topping))
             for topping in selectedToppings
         ]
-
+        orderItemToppingsDict = {}
+        for topping in self.toppings:
+            orderItemToppingsDict[uuid.uuid4()] = {
+                            "OrderItemId": orderItemId,
+                            "ItemId": itemId,
+                            "toppingId": topping.getUuid(),
+                            "intensity": round(random.gauss(10, 5)), # 10 for 100%, 5 for 50%, 20 for 200%...
+            }
+        return orderItemToppingsDict
+        
     
     def to_dict(self):
         """Convert the Item object to a dictionary for CSV writing."""

@@ -27,14 +27,15 @@ class Orders:
                         BasePrice=constants.FLAVORPRICES[constants.FLAVORS[randomFlavor]], 
                         SubFlavor=constants.MENU[constants.FLAVORS[randomFlavor]][randomSubflavor]
                         )
-            randomItem.generateToppings()
-            orderItemsDict[uuid.uuid4()] = {
-                            "orderItemUuid": uuid.uuid4(),
+            orderItemId = uuid.uuid4()
+            orderItemToppingsDict = randomItem.generateToppings(orderItemId, randomItem.getUuid())
+            orderItemsDict[orderItemId] = {
                             "orderId": self.getUuid(),
                             "itemId": randomItem.getUuid(),
                             "quantity": 1,
                             "subTotal": round(randomItem.getTotalPrice(), 2)
             }
+            Orders.write_orderItemToppings_to_csv(orderItemToppingsDict)
                             
             self.totalPrice += randomItem.getTotalPrice()
         return orderItemsDict
@@ -71,3 +72,23 @@ class Orders:
             "CustomerName": self.customerName,
             "EmployeeUUID": self.employeeId
         }
+    
+    def write_orderItemToppings_to_csv(orderItemToppingsDict, filename="orderItemToppings.csv"):
+        """Writes itemDict to a CSV file, appending if the file exists."""
+        if not orderItemToppingsDict:
+            print("No data to write.")
+            return
+        # Extract field names dynamically from the first item
+        fieldnames = list(next(iter(orderItemToppingsDict.values())).keys())
+        file_exists = os.path.isfile(filename)  # Check if file exists
+        with open(filename, mode="a" if file_exists else "w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            if not file_exists:  
+                writer.writeheader()  # Write header only if file is new
+            for item in orderItemToppingsDict.values():
+                #item["Item UUID"] = str(item["Item UUID"])
+                #item["subTotal"] = round(item["subTotal"], 2)  # Round Total Price
+
+                writer.writerow(item)
+
+        #print(f"✅ Data written to '{filename}' successfully.")
