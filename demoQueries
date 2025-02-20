@@ -22,7 +22,7 @@ SELECT
     Item.name,
     Item.subFlavor,
     COUNT(*) as orderCount,
-    SUM(OrderItems.subTotal) as totalRevenue
+    SUM(OrderItem.subTotal) as totalRevenue
 FROM OrderItem
 JOIN item ON orderItem.itemId = item.ID
 GROUP BY orderItem.itemId, item.name, item.subFlavor
