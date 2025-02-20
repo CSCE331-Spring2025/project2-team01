@@ -13,7 +13,7 @@ SELECT
     COUNT(OrderItemToppings.toppingId) AS totalSales
 FROM OrderItemToppings
 JOIN Toppings ON OrderItemToppings.toppingId = Toppings.ID
-GROUP BY OrderItemToppings.toppingId
+GROUP BY OrderItemToppings.toppingId, Toppings.type
 ORDER BY totalSales DESC
 LIMIT 5;
 
