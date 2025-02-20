@@ -55,7 +55,7 @@ SELECT
 FROM WeeklyOrders
 CROSS JOIN InventoryExpense
 CROSS JOIN EmployeeExpense
-ORDER BY WeeklyOrders.weekStart;
+ORDER BY WeeklyOrders.weekStart
 LIMIT 10; 
 
 SELECT 
