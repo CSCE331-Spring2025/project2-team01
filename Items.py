@@ -55,7 +55,7 @@ class Items:
                             "OrderItemId": orderItemId,
                             "ItemId": itemId,
                             "toppingId": topping.getUuid(),
-                            "intensity": round(random.gauss(10, 5)), # 10 for 100%, 5 for 50%, 20 for 200%...
+                            "intensity": max(round(random.gauss(10, 5)), 1) # 10 for 100%, 5 for 50%, 20 for 200%...
             }
         return orderItemToppingsDict
         
