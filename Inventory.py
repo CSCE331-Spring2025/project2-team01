@@ -1,4 +1,5 @@
 class Inventory:
+    #Inventory Class
     def __init__(self, Uuid, Name, isAllergen, StockQuantity, UnitPrice, Cost):
         self.Uuid = Uuid
         self.Name = Name
