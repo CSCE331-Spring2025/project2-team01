@@ -8,6 +8,7 @@ top 10 highest spending customers
 3 least performing employee
 */
 
+/* top 5 toppings */
 SELECT 
     Toppings.type AS toppingName, 
     COUNT(OrderItemToppings.toppingId) AS totalSales
@@ -17,6 +18,7 @@ GROUP BY OrderItemToppings.toppingId, Toppings.type
 ORDER BY totalSales DESC
 LIMIT 5;
 
+/* top 10 most popular items */
 SELECT
     OrderItem.itemId,
     Item.name,
@@ -29,6 +31,7 @@ GROUP BY orderItem.itemId, item.name, item.subFlavor
 ORDER BY totalRevenue DESC
 LIMIT 10;
 
+/* profit and loss */
 WITH WeeklyOrders AS (
     SELECT 
         DATE_TRUNC('week', orderDate) AS weekStart,
@@ -58,6 +61,7 @@ CROSS JOIN EmployeeExpense
 ORDER BY WeeklyOrders.weekStart
 LIMIT 10; 
 
+/* top 10 highest spending customers */
 SELECT 
     customername, 
     COUNT(*) AS total_orders
@@ -66,6 +70,7 @@ GROUP BY customername
 ORDER BY total_orders
 LIMIT 10;
 
+/* 3 least performing employee */
 SELECT e.ID, e.name, e.hours, 
        CASE WHEN e.isManager THEN 'Manager' ELSE 'Employee' END AS role, 
        COALESCE(SUM(o.totalPrice), 0) AS total_sales
