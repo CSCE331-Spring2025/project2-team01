@@ -63,7 +63,7 @@ SELECT
     COUNT(*) AS total_orders
 FROM orders
 GROUP BY customername
-ORDER BY total_orders;
+ORDER BY total_orders
 LIMIT 10;
 
 SELECT e.ID, e.name, e.hours, 
